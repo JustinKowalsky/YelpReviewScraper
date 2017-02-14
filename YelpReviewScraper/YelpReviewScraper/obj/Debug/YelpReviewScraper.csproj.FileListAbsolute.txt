@@ -1,0 +1,13 @@
+c:\users\justin\documents\visual studio 2015\Projects\YelpReviewScraper\YelpReviewScraper\bin\Debug\YelpReviewScraper.exe.config
+c:\users\justin\documents\visual studio 2015\Projects\YelpReviewScraper\YelpReviewScraper\obj\Debug\YelpReviewScraper.csprojResolveAssemblyReference.cache
+c:\users\justin\documents\visual studio 2015\Projects\YelpReviewScraper\YelpReviewScraper\obj\Debug\YelpReviewScraper.Form1.resources
+c:\users\justin\documents\visual studio 2015\Projects\YelpReviewScraper\YelpReviewScraper\obj\Debug\YelpReviewScraper.Properties.Resources.resources
+c:\users\justin\documents\visual studio 2015\Projects\YelpReviewScraper\YelpReviewScraper\obj\Debug\YelpReviewScraper.csproj.GenerateResource.Cache
+c:\users\justin\documents\visual studio 2015\Projects\YelpReviewScraper\YelpReviewScraper\bin\Debug\YelpReviewScraper.exe
+c:\users\justin\documents\visual studio 2015\Projects\YelpReviewScraper\YelpReviewScraper\bin\Debug\YelpReviewScraper.pdb
+c:\users\justin\documents\visual studio 2015\Projects\YelpReviewScraper\YelpReviewScraper\bin\Debug\WebDriver.dll
+c:\users\justin\documents\visual studio 2015\Projects\YelpReviewScraper\YelpReviewScraper\bin\Debug\WebDriver.Support.dll
+c:\users\justin\documents\visual studio 2015\Projects\YelpReviewScraper\YelpReviewScraper\bin\Debug\WebDriver.xml
+c:\users\justin\documents\visual studio 2015\Projects\YelpReviewScraper\YelpReviewScraper\bin\Debug\WebDriver.Support.xml
+c:\users\justin\documents\visual studio 2015\Projects\YelpReviewScraper\YelpReviewScraper\obj\Debug\YelpReviewScraper.exe
+c:\users\justin\documents\visual studio 2015\Projects\YelpReviewScraper\YelpReviewScraper\obj\Debug\YelpReviewScraper.pdb

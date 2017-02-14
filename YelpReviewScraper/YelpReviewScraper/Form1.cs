@@ -15,10 +15,11 @@ namespace YelpReviewScraper
 {
     public partial class Form1 : Form
     {
+        
         static IWebDriver driverGC;
         public Form1()
         {
-            driverGC = new ChromeDriver(@"C:\Users\Justin\Documents\Visual Studio 2015\chromedriver_win32");
+            driverGC = new ChromeDriver(@"Z:\Justin\Documents\Visual Studio 2015\chromedriver_win32");
             driverGC.Navigate().GoToUrl("https://www.yelp.com");
             InitializeComponent();
         }
@@ -32,11 +33,13 @@ namespace YelpReviewScraper
             myLocationSpot.Clear();
             myLocationSpot.SendKeys(myLocation.Text);
             driverGC.FindElement(By.Id("header-search-submit")).Click();
+            driverGC.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
             driverGC.FindElement(By.XPath("//*[@id='wrap']/div[4]/div[1]/div/div[2]/div/div[2]/div[1]/ul/li[4]")).Click();
+            driverGC.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(15));
             driverGC.FindElement(By.XPath("//*[@id='wrap']/div[4]/div[1]/div/div[2]/div/div[2]/div[2]/div[1]/ul/li[2]/label/span")).Click();
-            var starRating = driverGC.FindElement(By.ClassName("biz-rating"));
-            MessageBox.Show(starRating.Text);
-            driverGC.Quit();
+            driverGC.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(30));
+          //stuck here  var starRating = driverGC.FindElement(By.(""));
+            MessageBox.Show(starRating.Text);      
         }
     }
 }

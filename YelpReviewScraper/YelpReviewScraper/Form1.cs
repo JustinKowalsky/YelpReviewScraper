@@ -16,7 +16,7 @@ namespace YelpReviewScraper
 {
     public partial class Form1 : Form
     {
-        
+
         static IWebDriver driverGC;
         public Form1()
         {
@@ -38,22 +38,29 @@ namespace YelpReviewScraper
 
             List<IWebElement> shittyBiz = new List<IWebElement>();
             //var myEles = driverGC.FindElements(By.CssSelector("div.search-result"));
-            for (int i = 0;i<=1000;i++){
+            for (int i = 0; i <= 1000; i++)
+            {
+                driverGC.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
                 var myEles = driverGC.FindElements(By.CssSelector("div.search-result"));
-                foreach (IWebElement business in myEles)
+                int size = 1;
+                for (int j = 0; j < size; ++j)
                 {
+                    driverGC.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
+                    myEles = driverGC.FindElements(By.CssSelector("div.search-result"));
+                    size = myEles.Count();
+
                     driverGC.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
-                    var starRating = "";
+                    var starRating = " ";
                     try
                     {
-                        starRating = business.FindElement(By.CssSelector("div.biz-rating > div.i-stars")).GetAttribute("title");
+                        starRating = myEles[j].FindElement(By.CssSelector("div.biz-rating > div.i-stars")).GetAttribute("title");
                     }
                     catch (OpenQA.Selenium.NoSuchElementException)
                     {
                         MessageBox.Show("No stars");
                         continue;
                     }
-                    catch(OpenQA.Selenium.StaleElementReferenceException)
+                    catch (OpenQA.Selenium.StaleElementReferenceException)
                     {
                         MessageBox.Show("Stale");
                         continue;
@@ -67,21 +74,21 @@ namespace YelpReviewScraper
                         //shittyBiz.Add(starRating);
                         MessageBox.Show("Shitty");
                         driverGC.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
-                        var bizName = business.FindElement(By.CssSelector(".biz-name"));
+                        var bizName = myEles[j].FindElement(By.CssSelector(".biz-name"));
                         MessageBox.Show(bizName.Text);
                         shittyBiz.Add(bizName);
-                        var bizLocation = business.FindElement(By.CssSelector(".secondary-attributes"));
+                        var bizLocation = myEles[j].FindElement(By.CssSelector(".secondary-attributes"));
                         MessageBox.Show(bizLocation.Text);
                         shittyBiz.Add(bizLocation);
                     }
                     else
                     {
-                        var bizName = business.FindElement(By.CssSelector(".biz-name"));
+                        var bizName = myEles[j].FindElement(By.CssSelector(".biz-name"));
                         MessageBox.Show(bizName.Text);
                         driverGC.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
                         MessageBox.Show("Too good");
                     }
-                   
+
                 }
                 try
                 {
@@ -94,7 +101,7 @@ namespace YelpReviewScraper
                     //driverGC.Quit();
                 }
             }
-            
+
         }
     }
 }

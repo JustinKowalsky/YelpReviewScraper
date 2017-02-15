@@ -33,13 +33,20 @@ namespace YelpReviewScraper
             IWebElement myLocationSpot = driverGC.FindElement(By.CssSelector("#dropperText_Mast"));
             myLocationSpot.Clear();
             myLocationSpot.SendKeys(myLocation.Text);
+            String locationText = myLocationSpot.Text;
+            String productText = myProductSpot.Text;
+            
             driverGC.FindElement(By.CssSelector("#header-search-submit")).Click();
             driverGC.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
-
             List<IWebElement> shittyBiz = new List<IWebElement>();
-            //var myEles = driverGC.FindElements(By.CssSelector("div.search-result"));
-            for (int i = 0; i <= 1000; i++)
+            var numPages = (driverGC.FindElement(By.CssSelector(".page-of-pages")).Text);
+            numPages = Regex.Match(numPages, @"\d+$").Value;
+            int numberPages = Int32.Parse(numPages);
+            MessageBox.Show(numberPages.ToString());
+
+            for (int i = 1; i <= numberPages; i++)
             {
+                Uri myURL = new Uri("https://www.yelp.com/search?find_desc=" + myProduct.Text + "&find_loc=" + myLocation.Text + "&start=" + (i * 10), UriKind.Absolute);
                 driverGC.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
                 var myEles = driverGC.FindElements(By.CssSelector("div.search-result"));
                 int size = 1;
@@ -57,51 +64,38 @@ namespace YelpReviewScraper
                     }
                     catch (OpenQA.Selenium.NoSuchElementException)
                     {
-                        MessageBox.Show("No stars");
-                        continue;
-                    }
-                    catch (OpenQA.Selenium.StaleElementReferenceException)
-                    {
-                        MessageBox.Show("Stale");
+                        //MessageBox.Show("No stars");
                         continue;
                     }
                     starRating = Regex.Replace(starRating, @"[A-Za-z\s]", string.Empty);
                     float stars = float.Parse(starRating);
-                    MessageBox.Show(stars.ToString());
+                    //MessageBox.Show(stars.ToString());
 
                     if (stars <= 3)
                     {
-                        //shittyBiz.Add(starRating);
-                        MessageBox.Show("Shitty");
+                       // shittyBiz.Add(starRating);
+                        //MessageBox.Show("Shitty");
                         driverGC.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
                         var bizName = myEles[j].FindElement(By.CssSelector(".biz-name"));
-                        MessageBox.Show(bizName.Text);
+                        //MessageBox.Show(bizName.Text);
                         shittyBiz.Add(bizName);
                         var bizLocation = myEles[j].FindElement(By.CssSelector(".secondary-attributes"));
-                        MessageBox.Show(bizLocation.Text);
+                        //MessageBox.Show(bizLocation.Text);
                         shittyBiz.Add(bizLocation);
                     }
                     else
                     {
+                       // MessageBox.Show("Too good");
                         var bizName = myEles[j].FindElement(By.CssSelector(".biz-name"));
-                        MessageBox.Show(bizName.Text);
-                        driverGC.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
-                        MessageBox.Show("Too good");
+                       // MessageBox.Show(bizName.Text);
+                        driverGC.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));                       
                     }
-
+                    
                 }
-                try
-                {
-                    driverGC.FindElement(By.CssSelector("div.arrange_unit > a.next")).Click();
-                }
-                catch (OpenQA.Selenium.NoSuchElementException)
-                {
-                    MessageBox.Show("No more pages");
-                    return;
-                    //driverGC.Quit();
-                }
+                //MessageBox.Show("Ready for next page");
+                driverGC.Navigate().GoToUrl(myURL);
             }
-
+            driverGC.Quit();
         }
     }
 }

@@ -20,7 +20,7 @@ namespace YelpReviewScraper
         static IWebDriver driverGC;
         public Form1()
         {
-            driverGC = new ChromeDriver(@"C:\Users\Justin\Documents\Visual Studio 2015\chromedriver_win32");
+            driverGC = new ChromeDriver(@"Z:\Justin\Documents\Visual Studio 2015\chromedriver_win32");
             driverGC.Navigate().GoToUrl("https://www.yelp.com");
             InitializeComponent();
         }
@@ -41,29 +41,49 @@ namespace YelpReviewScraper
             
             foreach (IWebElement business in myEles)
             {
-                var starRating = business.FindElement(By.CssSelector("div.biz-rating > div.i-stars")).GetAttribute("title");
+                var starRating = " ";
+                try
+                {
+                    starRating = business.FindElement(By.CssSelector("div.biz-rating > div.i-stars")).GetAttribute("title");
+                }
+                catch (OpenQA.Selenium.NoSuchElementException)
+                {
+                    MessageBox.Show("No stars");
+                    continue;
+                }
                 starRating = Regex.Replace(starRating, @"[A-Za-z\s]", string.Empty);
                 float stars = float.Parse(starRating);
                 MessageBox.Show(stars.ToString());
+
                 if (stars <= 3)
                 {
+                    //shittyBiz.Add(starRating);
                     MessageBox.Show("Shitty");
                     driverGC.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
                     var bizName = business.FindElement(By.CssSelector(".biz-name"));
                     MessageBox.Show(bizName.Text);
+                    shittyBiz.Add(bizName);
                     var bizLocation = business.FindElement(By.CssSelector(".secondary-attributes"));
                     MessageBox.Show(bizLocation.Text);
-
+                    shittyBiz.Add(bizLocation);
                 }
                 else
                 {
                     driverGC.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
-                    MessageBox.Show("Too good");
-                    
-                    
-                }
-                
-            }     
+                    MessageBox.Show("Too good");   
+                }  
+            }
+            try
+            {
+                driverGC.FindElement(By.CssSelector("div.arrange_unit > a.u-decoration-none")).Click();
+            }
+            catch (OpenQA.Selenium.NoSuchElementException)
+            {
+                MessageBox.Show("No more pages");
+                return;
+                //driverGC.Quit();
+            }
+            
         }
     }
 }

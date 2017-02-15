@@ -34,20 +34,12 @@ namespace YelpReviewScraper
             myLocationSpot.SendKeys(myLocation.Text);
             driverGC.FindElement(By.Id("header-search-submit")).Click();
             driverGC.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
-            driverGC.FindElement(By.XPath("//*[@id='wrap']/div[4]/div[1]/div/div[2]/div/div[2]/div[1]/ul/li[4]")).Click();
-            driverGC.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(15));
-            driverGC.FindElement(By.XPath("//*[@id='wrap']/div[4]/div[1]/div/div[2]/div/div[2]/div[2]/div[1]/ul/li[2]/label/span")).Click();
-            driverGC.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(30));
-            var starRating = driverGC.FindElement(By.ClassName("i-stars"));
+            //driverGC.FindElement(By.XPath("//*[@id='wrap']/div[4]/div[1]/div/div[2]/div/div[2]/div[1]/ul/li[4]")).Click();
+            //driverGC.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(15));
+            //driverGC.FindElement(By.XPath("//*[@id='wrap']/div[4]/div[1]/div/div[2]/div/div[2]/div[2]/div[1]/ul/li[2]/label/span")).Click();
+            //driverGC.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(30));
+            var starRating = driverGC.FindElement(By.XPath("//*[@id='super - container']/div/div[2]/div[1]/div/div[4]/ul[2]/li[1]/div/div[1]/div[1]/div/div[2]/div[1]/div"));
             MessageBox.Show(starRating.Text);
-            // The rating element
-            List<IWebElement> starRatings = driverGC.FindElements(By.ClassName("i-stars"));
-            // The title attribute on the rating element is something like '4.5 star rating'
-            // which I think is what you're trying to find.
-            foreach (IWebElement elem in starRatings)
-            {
-                MessageBox.Show(elem.GetAttribute("title"));
-            }
         }
     }
 }

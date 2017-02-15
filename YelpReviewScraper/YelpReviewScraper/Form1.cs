@@ -38,8 +38,16 @@ namespace YelpReviewScraper
             driverGC.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(15));
             driverGC.FindElement(By.XPath("//*[@id='wrap']/div[4]/div[1]/div/div[2]/div/div[2]/div[2]/div[1]/ul/li[2]/label/span")).Click();
             driverGC.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(30));
-          //stuck here  var starRating = driverGC.FindElement(By.(""));
-            MessageBox.Show(starRating.Text);      
+            var starRating = driverGC.FindElement(By.ClassName("i-stars"));
+            MessageBox.Show(starRating.Text);
+            // The rating element
+            List<IWebElement> starRatings = driverGC.FindElements(By.ClassName("i-stars"));
+            // The title attribute on the rating element is something like '4.5 star rating'
+            // which I think is what you're trying to find.
+            foreach (IWebElement elem in starRatings)
+            {
+                MessageBox.Show(elem.GetAttribute("title"));
+            }
         }
     }
 }

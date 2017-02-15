@@ -37,3 +37,16 @@ C:\Users\Justin\Downloads\YelpReviewScraper-master\YelpReviewScraper-master\Yelp
 C:\Users\Justin\Downloads\YelpReviewScraper-master\YelpReviewScraper-master\YelpReviewScraper\YelpReviewScraper\obj\Debug\YelpReviewScraper.Form1.resources
 C:\Users\Justin\Downloads\YelpReviewScraper-master\YelpReviewScraper-master\YelpReviewScraper\YelpReviewScraper\obj\Debug\YelpReviewScraper.Properties.Resources.resources
 C:\Users\Justin\Downloads\YelpReviewScraper-master\YelpReviewScraper-master\YelpReviewScraper\YelpReviewScraper\obj\Debug\YelpReviewScraper.csproj.GenerateResource.Cache
+C:\Users\Justin\Documents\Visual Studio 2015\Projects\YelpReviewScraper\YelpReviewScraper\YelpReviewScraper\bin\Debug\YelpReviewScraper.exe.config
+C:\Users\Justin\Documents\Visual Studio 2015\Projects\YelpReviewScraper\YelpReviewScraper\YelpReviewScraper\obj\Debug\YelpReviewScraper.exe
+C:\Users\Justin\Documents\Visual Studio 2015\Projects\YelpReviewScraper\YelpReviewScraper\YelpReviewScraper\obj\Debug\YelpReviewScraper.pdb
+C:\Users\Justin\Documents\Visual Studio 2015\Projects\YelpReviewScraper\YelpReviewScraper\YelpReviewScraper\bin\Debug\YelpReviewScraper.exe
+C:\Users\Justin\Documents\Visual Studio 2015\Projects\YelpReviewScraper\YelpReviewScraper\YelpReviewScraper\bin\Debug\YelpReviewScraper.pdb
+C:\Users\Justin\Documents\Visual Studio 2015\Projects\YelpReviewScraper\YelpReviewScraper\YelpReviewScraper\bin\Debug\WebDriver.dll
+C:\Users\Justin\Documents\Visual Studio 2015\Projects\YelpReviewScraper\YelpReviewScraper\YelpReviewScraper\bin\Debug\WebDriver.Support.dll
+C:\Users\Justin\Documents\Visual Studio 2015\Projects\YelpReviewScraper\YelpReviewScraper\YelpReviewScraper\bin\Debug\WebDriver.xml
+C:\Users\Justin\Documents\Visual Studio 2015\Projects\YelpReviewScraper\YelpReviewScraper\YelpReviewScraper\bin\Debug\WebDriver.Support.xml
+C:\Users\Justin\Documents\Visual Studio 2015\Projects\YelpReviewScraper\YelpReviewScraper\YelpReviewScraper\obj\Debug\YelpReviewScraper.csprojResolveAssemblyReference.cache
+C:\Users\Justin\Documents\Visual Studio 2015\Projects\YelpReviewScraper\YelpReviewScraper\YelpReviewScraper\obj\Debug\YelpReviewScraper.Form1.resources
+C:\Users\Justin\Documents\Visual Studio 2015\Projects\YelpReviewScraper\YelpReviewScraper\YelpReviewScraper\obj\Debug\YelpReviewScraper.Properties.Resources.resources
+C:\Users\Justin\Documents\Visual Studio 2015\Projects\YelpReviewScraper\YelpReviewScraper\YelpReviewScraper\obj\Debug\YelpReviewScraper.csproj.GenerateResource.Cache

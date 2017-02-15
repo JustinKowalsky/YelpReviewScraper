@@ -20,7 +20,7 @@ namespace YelpReviewScraper
         static IWebDriver driverGC;
         public Form1()
         {
-            driverGC = new ChromeDriver(@"Z:\Justin\Documents\Visual Studio 2015\chromedriver_win32");
+            driverGC = new ChromeDriver(@"C:\Users\Justin\Documents\Visual Studio 2015\chromedriver_win32");
             driverGC.Navigate().GoToUrl("https://www.yelp.com");
             InitializeComponent();
         }
@@ -48,13 +48,18 @@ namespace YelpReviewScraper
                 if (stars <= 3)
                 {
                     MessageBox.Show("Shitty");
-                    
+                    driverGC.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
+                    var bizName = business.FindElement(By.CssSelector(".biz-name"));
+                    MessageBox.Show(bizName.Text);
+                    var bizLocation = business.FindElement(By.CssSelector(".secondary-attributes"));
+                    MessageBox.Show(bizLocation.Text);
+
                 }
                 else
                 {
                     driverGC.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
-                    var bizLocation = business.FindElement(By.CssSelector(".secondary-attributes"));
-                    MessageBox.Show(bizLocation.Text);
+                    MessageBox.Show("Too good");
+                    
                     
                 }
                 

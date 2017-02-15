@@ -34,18 +34,23 @@ namespace YelpReviewScraper
             myLocationSpot.SendKeys(myLocation.Text);
             driverGC.FindElement(By.Id("header-search-submit")).Click();
             driverGC.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
-            // var dataKeys =  driverGC.FindElement(By.ClassName("search-result"));
-            List<IWebElement> dataKeys = driverGC.FindElements(By.ClassName("search-result")).ToList();
-            MessageBox.Show(dataKeys.ToString());
-            foreach (var element in dataKeys)
+            //var dataKey =  driverGC.FindElement(By.ClassName("search-result")).GetAttribute("data-key");
+            //IList<IWebElement> dataKeys = driverGC.FindElement(By.ClassName("search-result")).GetAttribute("data-key" + i).ToList();
+            //MessageBox.Show(dataKeys.ToString());
+            var dataKey = driverGC.FindElement(By.ClassName("search-result")).GetAttribute("data-key");
+            int newDataKey = Int32.Parse(dataKey);
+            MessageBox.Show(dataKey.ToString());
+            for (int i=1; i<10; i++)
             {
                 var starRating = driverGC.FindElement(By.ClassName("i-stars"));
                 MessageBox.Show(starRating.GetAttribute("title"));
                 driverGC.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
                 var bizLocation = driverGC.FindElement(By.ClassName("secondary-attributes"));
                 MessageBox.Show(bizLocation.Text);
-            }
-                    
+                newDataKey = Int32.Parse(dataKey) + i;
+                MessageBox.Show(newDataKey.ToString());
+
+            }     
             
         }
     }

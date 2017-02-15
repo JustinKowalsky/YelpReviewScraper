@@ -38,8 +38,13 @@ namespace YelpReviewScraper
             //driverGC.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(15));
             //driverGC.FindElement(By.XPath("//*[@id='wrap']/div[4]/div[1]/div/div[2]/div/div[2]/div[2]/div[1]/ul/li[2]/label/span")).Click();
             //driverGC.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(30));
-            var starRating = driverGC.FindElement(By.XPath("//*[@id='super - container']/div/div[2]/div[1]/div/div[4]/ul[2]/li[1]/div/div[1]/div[1]/div/div[2]/div[1]/div"));
-            MessageBox.Show(starRating.Text);
+            var starRating = driverGC.FindElement(By.ClassName("i-stars"));
+            MessageBox.Show(starRating.GetAttribute("title"));
+            driverGC.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
+            var bizLocation = driverGC.FindElement(By.ClassName("secondary-attributes"));
+            MessageBox.Show(bizLocation.Text);
+            
+            
         }
     }
 }

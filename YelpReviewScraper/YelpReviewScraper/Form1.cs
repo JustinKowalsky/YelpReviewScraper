@@ -34,16 +34,18 @@ namespace YelpReviewScraper
             myLocationSpot.SendKeys(myLocation.Text);
             driverGC.FindElement(By.Id("header-search-submit")).Click();
             driverGC.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
-            //driverGC.FindElement(By.XPath("//*[@id='wrap']/div[4]/div[1]/div/div[2]/div/div[2]/div[1]/ul/li[4]")).Click();
-            //driverGC.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(15));
-            //driverGC.FindElement(By.XPath("//*[@id='wrap']/div[4]/div[1]/div/div[2]/div/div[2]/div[2]/div[1]/ul/li[2]/label/span")).Click();
-            //driverGC.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(30));
-            var starRating = driverGC.FindElement(By.ClassName("i-stars"));
-            MessageBox.Show(starRating.GetAttribute("title"));
-            driverGC.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
-            var bizLocation = driverGC.FindElement(By.ClassName("secondary-attributes"));
-            MessageBox.Show(bizLocation.Text);
-            
+            // var dataKeys =  driverGC.FindElement(By.ClassName("search-result"));
+            List<IWebElement> dataKeys = driverGC.FindElements(By.ClassName("search-result")).ToList();
+            MessageBox.Show(dataKeys.ToString());
+            foreach (var element in dataKeys)
+            {
+                var starRating = driverGC.FindElement(By.ClassName("i-stars"));
+                MessageBox.Show(starRating.GetAttribute("title"));
+                driverGC.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
+                var bizLocation = driverGC.FindElement(By.ClassName("secondary-attributes"));
+                MessageBox.Show(bizLocation.Text);
+            }
+                    
             
         }
     }

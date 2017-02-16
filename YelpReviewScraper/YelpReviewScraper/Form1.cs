@@ -11,6 +11,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using System.Text.RegularExpressions;
+using System.IO;
 
 namespace YelpReviewScraper
 {
@@ -39,12 +40,13 @@ namespace YelpReviewScraper
             driverGC.FindElement(By.CssSelector("#header-search-submit")).Click();
             driverGC.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
             List<IWebElement> shittyBiz = new List<IWebElement>();
+            List<String> newShitBiz = new List<string>();
             var numPages = (driverGC.FindElement(By.CssSelector(".page-of-pages")).Text);
             numPages = Regex.Match(numPages, @"\d+$").Value;
             int numberPages = Int32.Parse(numPages);
             MessageBox.Show(numberPages.ToString());
 
-            for (int i = 1; i <= numberPages; i++)
+            for (int i = 1; i <= 2; i++)
             {
                 Uri myURL = new Uri("https://www.yelp.com/search?find_desc=" + myProduct.Text + "&find_loc=" + myLocation.Text + "&start=" + (i * 10), UriKind.Absolute);
                 driverGC.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
@@ -58,6 +60,7 @@ namespace YelpReviewScraper
 
                     driverGC.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
                     var starRating = " ";
+                    //IWebElement newStarRating;
                     try
                     {
                         starRating = myEles[j].FindElement(By.CssSelector("div.biz-rating > div.i-stars")).GetAttribute("title");
@@ -73,15 +76,15 @@ namespace YelpReviewScraper
 
                     if (stars <= 3)
                     {
-                       // shittyBiz.Add(starRating);
+                        newShitBiz.Add(starRating);
                         //MessageBox.Show("Shitty");
                         driverGC.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
                         var bizName = myEles[j].FindElement(By.CssSelector(".biz-name"));
                         //MessageBox.Show(bizName.Text);
-                        shittyBiz.Add(bizName);
+                        newShitBiz.Add(bizName.Text);
                         var bizLocation = myEles[j].FindElement(By.CssSelector(".secondary-attributes"));
                         //MessageBox.Show(bizLocation.Text);
-                        shittyBiz.Add(bizLocation);
+                        newShitBiz.Add(bizLocation.Text);
                     }
                     else
                     {
@@ -95,6 +98,15 @@ namespace YelpReviewScraper
                 //MessageBox.Show("Ready for next page");
                 driverGC.Navigate().GoToUrl(myURL);
             }
+            using (StreamWriter writer = new StreamWriter(@"C:\Users\Justin\Desktop\newFile.txt"))
+            {
+                foreach (string s in newShitBiz)
+                {
+                    // writer.Write(s); // Writes in same line
+                    writer.WriteLine(s);// Writes in next line
+                }
+            }
+            MessageBox.Show("End");
             driverGC.Quit();
         }
     }

@@ -85,6 +85,7 @@ namespace YelpReviewScraper
                         var bizLocation = myEles[j].FindElement(By.CssSelector(".secondary-attributes"));
                         //MessageBox.Show(bizLocation.Text);
                         newShitBiz.Add(bizLocation.Text);
+                        newShitBiz.Add("");
                     }
                     else
                     {
@@ -105,6 +106,7 @@ namespace YelpReviewScraper
                     // writer.Write(s); // Writes in same line
                     writer.WriteLine(s);// Writes in next line
                 }
+
             }
             MessageBox.Show("End");
             driverGC.Quit();
